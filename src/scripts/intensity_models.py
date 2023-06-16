@@ -141,12 +141,10 @@ class LogDNDM(object):
         m = jnp.array(m)
         log_dNdm = self.log_dndm_pisn(m)
 
-        log_dNdm = jnp.where(m <= self.log_dndm_pisn.mbh_grid[0], np.NINF, log_dNdm)
+        # We want to turn dN/dm from PISN *off* at high masses, interpolation will take care of low masses.
         log_dNdm = jnp.where(m >= self.log_dndm_pisn.mbh_grid[-1], np.NINF, log_dNdm)
 
         log_dNdm = jnp.logaddexp(log_dNdm, -self.c*jnp.log(m/self.mbhmax) + self.log_pl_norm + log_smooth_turnon(m, self.mbhmax))
-
-        log_dNdm = jnp.where(m < self.mbh_min, np.NINF, log_dNdm)
 
         return log_dNdm + self.log_norm
     

@@ -4,6 +4,13 @@
 
 \newcommand{\todo}[1]{\textcolor{cyan}{TODO: #1}}
 
+% Abbreviations
+\newcommand{\mBH}{\ensuremath{m_\mathrm{BH}}}
+\newcommand{\mBHMax}{\ensuremath{m_{\mathrm{BH},\mathrm{max}}}}
+\newcommand{\mCO}{\ensuremath{m_{\mathrm{CO}}}}
+\newcommand{\mCOMax}{\ensuremath{m_{\mathrm{CO},\mathrm{max}}}}
+\newcommand{\mPISN}{\ensuremath{m_\mathrm{PISN}}}
+
 % Begin!
 \begin{document}
 
@@ -36,86 +43,127 @@
 \section{Introduction}
 \label{sec:intro}
 
-\begin{figure}
-    \begin{center}
-        \includegraphics[width=\columnwidth]{figures/m1-vs-m2.pdf}
-    \end{center}
-    \caption{Approximate population-weighted source frame masses from our set of detections.  For each event we show the 50\% and 90\% credible regions.  The source frame masses are computed assuming a \todo{cosmology}.}
-    \label{fig:m1-vs-m2}
-    \script{m1-vs-m2.py}
-\end{figure}
+% \begin{figure}
+%     \begin{center}
+%         \includegraphics[width=\columnwidth]{figures/m1-vs-m2.pdf}
+%     \end{center}
+%     \caption{Approximate population-weighted source frame masses from our set of detections.  For each event we show the 50\% and 90\% credible regions.  The source frame masses are computed assuming a \todo{cosmology}.}
+%     \label{fig:m1-vs-m2}
+%     \script{m1-vs-m2.py}
+% \end{figure}
 
-\begin{figure}
-    \begin{center}
-        \includegraphics[width=\columnwidth]{figures/dNdm_PISN_effects.pdf}
-    \end{center}
-    \caption{Effect of changing various parameters in our model of the mass function.}
-    \label{fig:dNdm_PISN_effects}
-    \script{dNdm_PISN_effects.py}
-\end{figure}
+% \begin{figure}
+%     \begin{center}
+%         \includegraphics[width=\columnwidth]{figures/dNdm_PISN_effects.pdf}
+%     \end{center}
+%     \caption{Effect of changing various parameters in our model of the mass function.}
+%     \label{fig:dNdm_PISN_effects}
+%     \script{dNdm_PISN_effects.py}
+% \end{figure}
 
-\begin{figure}
-    \begin{center}
-        \includegraphics[width=\columnwidth]{figures/dNdm_fitted.pdf}
-    \end{center}
-    \caption{Merger rate per primary mass at equal mass ratio and redshift zero inferred by our model fitted to the observations in O3.}
-    \label{fig:dNdm_fitted}
-    \script{dNdm_fitted.py}
-\end{figure}
+% \begin{figure}
+%     \begin{center}
+%         \includegraphics[width=\columnwidth]{figures/dNdm_fitted.pdf}
+%     \end{center}
+%     \caption{Merger rate per primary mass at equal mass ratio and redshift zero inferred by our model fitted to the observations in O3.}
+%     \label{fig:dNdm_fitted}
+%     \script{dNdm_fitted.py}
+% \end{figure}
 
-\begin{figure}
-    \begin{center}
-        \includegraphics[width=\columnwidth]{figures/cosmo_params_corner.pdf}
-    \end{center}
-    \caption{Corner plot of cosmological parameters and mass scale variables.}
-    \label{fig:cosmo-params-corner}
-    \script{cosmo_params_corner.py}
-\end{figure}
+% \begin{figure}
+%     \begin{center}
+%         \includegraphics[width=\columnwidth]{figures/cosmo_params_corner.pdf}
+%     \end{center}
+%     \caption{Corner plot of cosmological parameters and mass scale variables.}
+%     \label{fig:cosmo-params-corner}
+%     \script{cosmo_params_corner.py}
+% \end{figure}
 
-\begin{figure}
-    \begin{center}
-        \includegraphics[width=\columnwidth]{figures/h_zoomin.pdf}
-    \end{center}
-    \caption{Posterior versus prior on $h$.}
-    \label{fig:h-zoomin}
-    \script{h_zoomin.py}
-\end{figure}
+% \begin{figure}
+%     \begin{center}
+%         \includegraphics[width=\columnwidth]{figures/h_zoomin.pdf}
+%     \end{center}
+%     \caption{Posterior versus prior on $h$.}
+%     \label{fig:h-zoomin}
+%     \script{h_zoomin.py}
+% \end{figure}
 
-\begin{figure}
-    \begin{center}
-        \includegraphics[width=\columnwidth]{figures/omh2_zoomin.pdf}
-    \end{center}
-    \caption{Posterior versus prior on $\omega_M = \Omega_M h^2$.}
-    \label{fig:omh2-zoomin}
-    \script{omh2_zoomin.py}
-\end{figure}
+% \begin{figure}
+%     \begin{center}
+%         \includegraphics[width=\columnwidth]{figures/omh2_zoomin.pdf}
+%     \end{center}
+%     \caption{Posterior versus prior on $\omega_M = \Omega_M h^2$.}
+%     \label{fig:omh2-zoomin}
+%     \script{omh2_zoomin.py}
+% \end{figure}
 
-\begin{figure}
-    \begin{center}
-        \includegraphics[width=\columnwidth]{figures/shape_corner.pdf}
-    \end{center}
-    \caption{Corner plot of the bump shape parameters fitted to O3.}
-    \label{fig:shape-corner}
-    \script{shape_corner.py}
-\end{figure}
+% \begin{figure}
+%     \begin{center}
+%         \includegraphics[width=\columnwidth]{figures/shape_corner.pdf}
+%     \end{center}
+%     \caption{Corner plot of the bump shape parameters fitted to O3.}
+%     \label{fig:shape-corner}
+%     \script{shape_corner.py}
+% \end{figure}
 
-\begin{figure}
-    \begin{center}
-        \includegraphics[width=\columnwidth]{figures/peak-zoomin.pdf}
-    \end{center}
-    \caption{Shape of the 30 MSun peak inferred from O3.}
-    \label{fig:peak-zoomin}
-    \script{peak_zoomin.py}
-\end{figure}
+% \begin{figure}
+%     \begin{center}
+%         \includegraphics[width=\columnwidth]{figures/peak-zoomin.pdf}
+%     \end{center}
+%     \caption{Shape of the 30 MSun peak inferred from O3.}
+%     \label{fig:peak-zoomin}
+%     \script{peak_zoomin.py}
+% \end{figure}
 
-\begin{figure}
-    \begin{center}
-        \includegraphics[width=\columnwidth]{figures/mock_observation_corner.pdf}
-    \end{center}
-    \caption{An example of our mock posteriors for a random detected event.}
-    \label{fig:mock-observation-corner}
-    \script{mock_observation_corner.py}
-\end{figure}
+% \begin{figure}
+%     \begin{center}
+%         \includegraphics[width=\columnwidth]{figures/mock_observation_corner.pdf}
+%     \end{center}
+%     \caption{An example of our mock posteriors for a random detected event.}
+%     \label{fig:mock-observation-corner}
+%     \script{mock_observation_corner.py}
+% \end{figure}
+
+% \begin{figure}
+%     \begin{center}
+%         \includegraphics[width=\columnwidth]{figures/peak-zoomin.pdf}
+%     \end{center}
+%     \caption{Shape of the 30 MSun peak inferred from O3.}
+%     \label{fig:peak-zoomin}
+%     \script{peak_zoomin.py}
+% \end{figure}
+
+% \begin{figure}
+%     \begin{center}
+%         \includegraphics[width=\columnwidth]{figures/mock_observation_corner.pdf}
+%     \end{center}
+%     \caption{An example of our mock posteriors for a random detected event.}
+%     \label{fig:mock-observation-corner}
+%     \script{mock_observation_corner.py}
+% \end{figure}
+
+\appendix
+
+\section{Analytic Approximation}
+
+Our model for the stellar-origin mass function rests on the map from core / ZAMS
+mass to \emph{mean} BH mass, which we parameterize by 
+\begin{equation}
+    \mBH = \begin{cases}
+        \mCO & 0 < \mBH < \mPISN \\
+        \mBHMax - a \left( \mCO - \mCOMax \right)^2 & \mPISN \leq \mBH \leq \mBHMax
+    \end{cases}
+\end{equation}
+where 
+\begin{equation}
+    a = \frac{1}{4\left( \mBHMax - \mPISN \right)}
+\end{equation}
+and
+\begin{equation}
+    \mCOMax = 2 \mBHMax - \mPISN
+\end{equation}
+are determined by the requirement that the map is smooth (continuous and with
+continuous derivative) at $\mBH = \mPISN$.
 
 \bibliography{bib}
 

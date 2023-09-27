@@ -2,14 +2,36 @@
 \documentclass[modern]{aastex631}
 \usepackage{showyourwork}
 
+\usepackage{acro}
+\acsetup{patch/longtable=false}
+
 \newcommand{\todo}[1]{\textcolor{cyan}{TODO: #1}}
 
 % Abbreviations
+\newcommand{\dd}{\ensuremath{\mathrm{d}}}
 \newcommand{\mBH}{\ensuremath{m_\mathrm{BH}}}
 \newcommand{\mBHMax}{\ensuremath{m_{\mathrm{BH},\mathrm{max}}}}
 \newcommand{\mCO}{\ensuremath{m_{\mathrm{CO}}}}
 \newcommand{\mCOMax}{\ensuremath{m_{\mathrm{CO},\mathrm{max}}}}
 \newcommand{\mPISN}{\ensuremath{m_\mathrm{PISN}}}
+
+% Acronyms
+\DeclareAcronym{BH}{
+    short = BH,
+    long = black hole
+}
+\DeclareAcronym{IMF}{
+    short = IMF,
+    long = initial mass function
+}
+\DeclareAcronym{PISN}{
+    short = PISN,
+    long = pair-instability supernova
+}
+\DeclareAcronym{ZAMS}{
+    short = ZAMS,
+    long = zero-age main sequence
+}
 
 % Begin!
 \begin{document}
@@ -146,10 +168,10 @@
 
 \section{Analytic Approximation}
 
-Our model for the stellar-origin mass function rests on the map from core / ZAMS
-mass to \emph{mean} BH mass, which we parameterize by 
+Our model for the stellar-origin mass function rests on the map from core / \ac{ZAMS}
+mass to \emph{mean} \ac{BH} mass, which we parameterize by 
 \begin{equation}
-    \mBH = \begin{cases}
+    \mBH = f\left( \mCO \right) = \begin{cases}
         \mCO & 0 < \mBH < \mPISN \\
         \mBHMax - a \left( \mCO - \mCOMax \right)^2 & \mPISN \leq \mBH \leq \mBHMax
     \end{cases}
@@ -163,7 +185,80 @@ and
     \mCOMax = 2 \mBHMax - \mPISN
 \end{equation}
 are determined by the requirement that the map is smooth (continuous and with
-continuous derivative) at $\mBH = \mPISN$.
+continuous derivative) at $\mBH = \mPISN$.  For $\mBH < \mPISN$ the relationship
+between the core / \ac{ZAMS} mass and the mean \ac{BH} mass is the identity; for
+$\mPISN \leq \mBH \leq \mBHMax$ the relationship ``softens'' and the mean
+\ac{BH} mass is smaller than the core / \ac{ZAMS} mass, reaching a maximum of
+$\mBHMax$.
+
+The actual \ac{BH} mass is assumed to be normally distributed about the mean
+with a standard deviation of $\sigma$.  The \ac{BH} mass function is then
+\begin{equation}
+    \frac{\dd N}{\dd \mBH} = \int \dd \mCO \, \frac{\dd N}{\dd \mCO} \, \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left( -\frac{\left( \mBH - f\left( \mCO \right) \right)^2}{2\sigma^2} \right).
+\end{equation}
+If we assume that $\sigma$ is small enough that the exponential factor is much
+more sharply peaked than the core / \ac{ZAMS} mass function (which, probably,
+behaves somewhat like the power-law \ac{IMF}, and is therefore broad and
+smooth), we can approximate the latter as a constant over the range of $\mCO$
+that contributes to the integral, and write 
+\begin{equation}
+    \label{eq:approx-dNdmBH-integral}
+    \frac{\dd N}{\dd \mBH} \simeq \frac{\dd N}{\dd \mCO^*} \int \dd \mCO \, \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left( -\frac{\left( \mBH - f\left( \mCO \right) \right)^2}{2\sigma^2} \right),
+\end{equation}
+where $\mCO^*$ is the value of $\mCO$ at which the argument to the exponential
+is minimized.  For $\mBH \leq \mBHMax$ there are two such values,
+$\mCO^{*,{\pm}}$, where the argument of the exponential becomes zero; these are
+given by 
+\begin{equation}
+    \mCO^{*,-} = \begin{cases}
+        \mBH & 0 < \mBH < \mPISN \\
+        \mCOMax - \sqrt{\frac{\mBHMax - \mBH}{a}} & \mPISN \leq \mBH \leq \mBHMax
+    \end{cases}
+\end{equation}
+and
+\begin{equation}
+    \mCO^{*,+} = \mCOMax + \sqrt{\frac{\mBHMax - \mBH}{a}}.
+\end{equation}
+For $\mBH > \mBHMax$ the two roots merge, and the argument of the exponential is
+minimized (though not zero) when $\mCO = \mCOMax$.
+
+To evaluate the integral in Eq.~\eqref{eq:approx-dNdmBH-integral}, note that it
+takes the form 
+\begin{equation}
+    I = \frac{1}{\sqrt{2 \pi \sigma^2}} \int \dd x \, \exp\left(- \frac{\left( \alpha + \beta x^2 \right)^2}{2 \sigma^2} \right)
+\end{equation}
+with 
+\begin{equation}
+    x = \mCO - \mCOMax,
+\end{equation}
+\begin{equation}
+    \alpha = \mBH - \mBHMax,
+\end{equation}
+and
+\begin{equation}
+    \beta = a = \frac{1}{4 \left( \mBHMax - \mPISN \right)}.
+\end{equation}
+The value of $I$ is
+\begin{multline}
+    I\left( \mBH \right) = \frac{1}{2\sigma} \sqrt{\frac{\left|\alpha\right|}{\beta}} \exp\left( - \frac{\alpha^2}{4 \sigma^2} \right) \\ \times \begin{cases}
+        \sqrt{\frac{\pi}{2}} \left( I_{-1/4} \left( \frac{\alpha^2}{4\sigma^2} \right) + I_{1/4} \left( \frac{\alpha^2}{4 \sigma^2} \right) \right) & \mBH < \mBHMax \\
+        \frac{1}{\sqrt{\pi}} K_{1/4} \left( \frac{\alpha^2}{4 \sigma^2} \right) & \mBH > \mBHMax,
+    \end{cases}
+\end{multline}
+where $I_\nu$ is the modified Bessel function of the first kind and $K_\nu$ is a
+modified Bessel function of the second kind.  The integral $I$ is evidently
+symmetric about $x=0$, so one half should be ``applied'' to each of the two
+roots $\mCO^{*,\pm}$; that is, the $x<0$ part of the integral ``selects'' the
+$\mCO^{*,-}$ root of the exponential argument, and the $x>0$ part the
+$\mCO^{*,+}$.  
+
+Putting everything together,
+\begin{equation}
+    \frac{\dd N}{\dd \mBH} \simeq I\left( \mBH \right) \begin{cases}
+        \frac{1}{2} \left( \frac{\dd N}{\dd \mCO^{*,-}} + \frac{\dd N}{\dd \mCO^{*,+}} \right) & \mBH < \mBHMax \\
+        \frac{\dd N}{\dd \mCOMax} & \mBH > \mBHMax
+    \end{cases}
+\end{equation}
 
 \bibliography{bib}
 
